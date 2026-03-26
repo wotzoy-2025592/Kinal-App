@@ -1,16 +1,15 @@
 package com.williamotzoy.kinalapp.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
     @Id
     @Column(name = "codigo_usuario")
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long codigoUsuario;
     @Column
     private String userName;
@@ -24,7 +23,6 @@ public class Usuario {
     private Long estado;
 
     public Usuario(){
-
     }
 
     public Usuario(Long codigoUsuario, String userName, String password, String email, String rol, Long estado) {
