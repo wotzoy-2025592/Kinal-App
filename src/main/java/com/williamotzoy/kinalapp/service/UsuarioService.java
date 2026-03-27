@@ -40,12 +40,12 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public Optional<Usuario> buscarPorCodigo(Long codigo){
-        return usuarioRepository.findById(String.valueOf(codigo));
+        return usuarioRepository.findById(codigo);
     }
 
     @Override
     public Usuario actualizar(Long codigo, Usuario usuario){
-        if(!usuarioRepository.existsById(String.valueOf(codigo))){
+        if(!usuarioRepository.existsById(codigo)){
             throw new RuntimeException("El usuario no se pudo encontrar con el codigo: " + codigo);
         }
         usuario.setCodigoUsuario(codigo);
@@ -55,16 +55,16 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     public void eliminar(Long codigo){
-        if(!usuarioRepository.existsById(String.valueOf(codigo))){
+        if(!usuarioRepository.existsById(codigo)){
             throw new RuntimeException("El usuario no se encontró con el código: " + codigo);
         }
-        usuarioRepository.deleteById(String.valueOf(codigo));
+        usuarioRepository.deleteById(codigo);
     }
 
     @Override
     @Transactional(readOnly = true)
     public boolean existePorCodigo(Long codigo){
-        return usuarioRepository.existsById(String.valueOf(codigo));
+        return usuarioRepository.existsById(codigo);
     }
 
     private void validarUsuario(Usuario usuario){
