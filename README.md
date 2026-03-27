@@ -43,4 +43,13 @@ Es importante saber que debes hacer para instalar y ejecutar el programa:
 * La capa de servicio y de interfaz funcionan correctamente, validando campos vacios y poder encontrar estado
 * El controlador de Producto esta listo para poder realizar el testeo de los endpoints.
 
+
+* Se ha creado la capa de entidad de Venta, ahora esta lista para crear la relación
+* Se ha creado la cacpa de repositorio de Venta.
+* Se ha creado la capa de interfaz de servicio de Venta.
+* Se ha creado la capa de servicio de Venta.
+* Se ha creado el controlador de Venta.
+* Los métodos de verificación estan en service, se tiene ya los métodos HTTPS y métodos CRUD para verificar datos en los endpoints.
+* 
+
 ## Solución de Errores
