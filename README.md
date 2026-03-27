@@ -23,6 +23,12 @@ Es importante saber que debes hacer para instalar y ejecutar el programa:
 * Ejecutar la aplicacion desde un editor de textos (Preferiblemente Intellij)
 
 ## Documentación
-
+* Se ha creado la capa de entidad de Usuario, estando lista para crear las relaciones/cardinalidad
+* Se ha creado la capa de repositorio de Usuario
+* Se ha creado la capa de interfaz de servicio de Usuario
+* Se ha creado la capa de servicio de Usuario
+* Se ha creado la capa de controlador de Usuario
+* La capa de servicio ya valida campos vacíos y la capa de interfaz de servicio ya tiene el metodo para encontrar por estado.
+* El controlador de Usuario ya tiene listo los metodos de mapeo para poder realizar funciones del CRUD.
 
 ## Solución de Errores
