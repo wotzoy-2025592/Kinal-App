@@ -31,4 +31,16 @@ Es importante saber que debes hacer para instalar y ejecutar el programa:
 * La capa de servicio ya valida campos vacíos y la capa de interfaz de servicio ya tiene el metodo para encontrar por estado.
 * El controlador de Usuario ya tiene listo los metodos de mapeo para poder realizar funciones del CRUD.
 
+
+* Se cambio el tipo de variable en repository y service de la entidad Usuario, pasando de ser String a Long.
+
+
+* Se ha creado la capa de entidad de Producto estando lista para crear la cardinalidad
+* Se ha creado la capa repositorio de Producto
+* Se ha creado la capa de interfaz de servicio de Producto
+* Se ha creado la capa de servicio de Producto
+* Se ha creado el controlador de Producto
+* La capa de servicio y de interfaz funcionan correctamente, validando campos vacios y poder encontrar estado
+* El controlador de Producto esta listo para poder realizar el testeo de los endpoints.
+
 ## Solución de Errores
