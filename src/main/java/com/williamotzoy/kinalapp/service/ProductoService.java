@@ -68,9 +68,7 @@ public class ProductoService implements IProductoService{
     }
 
     private void validarProducto(Producto producto){
-        if (producto.getCodigoProducto() == null){
-            throw new IllegalArgumentException("El campo de codigo de producto es obligatorio.");
-        }
+
         if (producto.getNombreProducto() == null || producto.getNombreProducto().trim().isEmpty()){
             throw new IllegalArgumentException("El campo de nombre de producto es obligatorio.");
         }

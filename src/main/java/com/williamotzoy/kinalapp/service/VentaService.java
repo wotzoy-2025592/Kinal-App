@@ -70,9 +70,7 @@ public class VentaService implements IVentaService{
     }
 
     private void validarVenta(Venta venta) {
-        if (venta.getCodigoVenta() == null) {
-            throw new IllegalArgumentException("El campo de codigo de venta es obligatorio");
-        }
+
         if (venta.getFechaVenta() == null) {
             throw new IllegalArgumentException("El campo de fecha es obligatorio");
         }
