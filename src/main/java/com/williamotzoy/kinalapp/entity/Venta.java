@@ -1,9 +1,11 @@
 package com.williamotzoy.kinalapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "ventas")
@@ -12,12 +14,25 @@ public class Venta {
     @Column(name = "codigo_venta")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long codigoVenta;
-    @Column
+    @Column(nullable = false)
     private Date fechaVenta;
-    @Column
+    @Column(nullable = false)
     private BigDecimal total;
-    @Column
+    @Column(nullable = false)
     private Long estado;
+
+    @JsonIgnoreProperties("clienteVentas")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DPICliente", foreignKey = @ForeignKey(name = "FK_cliente_venta"))
+    private Cliente clienteVenta;
+
+    @JsonIgnoreProperties("usuarioVentas")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigoUsuario", foreignKey = @ForeignKey(name = "FK_usuario_venta"))
+    private Usuario usuarioVenta;
+
+    @OneToMany(mappedBy = "ventaDetalle", cascade = CascadeType.ALL)
+    private List<DetalleVenta> ventaDetalles;
 
     public Venta(){
     }

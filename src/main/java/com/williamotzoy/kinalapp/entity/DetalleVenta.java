@@ -1,6 +1,7 @@
 package com.williamotzoy.kinalapp.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -13,12 +14,22 @@ public class DetalleVenta {
     @Column(name = "codigo_detalle_venta")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long codigoDetalleVenta;
-    @Column
+    @Column(nullable = false)
     private Long cantidad;
-    @Column
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal precioUnitario;
-    @Column
+    @Column(nullable = false)
     private BigDecimal subTotal;
+
+    @JsonIgnoreProperties("productoDetallesVenta")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigoProducto", foreignKey = @ForeignKey(name = "FK_producto_detalle_venta"))
+    private Producto productoDetalleVenta;
+
+    @JsonIgnoreProperties("ventaDetalles")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigoVenta", foreignKey = @ForeignKey(name = "FK_venta_detalle_venta"))
+    private Venta ventaDetalle;
 
     public DetalleVenta(){
 

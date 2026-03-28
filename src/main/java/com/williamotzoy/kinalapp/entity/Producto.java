@@ -3,6 +3,7 @@ package com.williamotzoy.kinalapp.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "productos")
@@ -12,14 +13,17 @@ public class Producto {
     @Column(name = "codigo_producto")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigoProducto;
-    @Column
+    @Column(nullable = false)
     private String nombreProducto;
-    @Column
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal precio;
-    @Column
+    @Column(nullable = false)
     private Long stock;
-    @Column
+    @Column(nullable = false)
     private Long estado;
+
+    @OneToMany(mappedBy = "productoDetalleVenta", cascade = CascadeType.ALL)
+    private List<DetalleVenta> productoDetallesVenta;
 
     public Producto(){
     }

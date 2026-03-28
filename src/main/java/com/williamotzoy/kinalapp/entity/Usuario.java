@@ -4,6 +4,8 @@ package com.williamotzoy.kinalapp.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -11,16 +13,19 @@ public class Usuario {
     @Column(name = "codigo_usuario")
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long codigoUsuario;
-    @Column
+    @Column(nullable = false)
     private String userName;
-    @Column
+    @Column(nullable = false)
     private String password;
-    @Column
+    @Column(nullable = false)
     private String email;
-    @Column
+    @Column(nullable = false)
     private String rol;
-    @Column
+    @Column(nullable = false)
     private Long estado;
+
+    @OneToMany(mappedBy = "usuarioVenta", cascade = CascadeType.ALL)
+    private List<Venta> usuarioVentas;
 
     public Usuario(){
     }

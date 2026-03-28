@@ -1,9 +1,8 @@
 package com.williamotzoy.kinalapp.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 
 @Entity
@@ -12,14 +11,17 @@ public class Cliente {
     @Id
     @Column (name = "dpi_cliente")
     private String DPICliente;
-    @Column
+    @Column(nullable = false)
     private String nombreCliente;
-    @Column
+    @Column(nullable = false)
     private String apellidoCliente;
-    @Column
+    @Column(nullable = false)
     private String direccion;
-    @Column
+    @Column(nullable = false)
     private int estado;
+
+    @OneToMany(mappedBy = "clienteVenta", cascade = CascadeType.ALL)
+    private List<Venta> clienteVentas;
 
     public Cliente() {
     }
