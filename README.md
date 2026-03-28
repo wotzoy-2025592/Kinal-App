@@ -59,4 +59,14 @@ Es importante saber que debes hacer para instalar y ejecutar el programa:
 * Se ha creado el controlador de Detalle Venta.
 * Los métodos de verificación están en DetalleVentaService y se tienen los métodos HTTPS y métodos CRUD para verificar los endpoints.
 
+
+* Se agregaron las relaciones de cada entidad y sus cardinalidades, tambien se agregaron las foraneas de las 2 entidades que tenían. El modelo entidad relación
+  esta exactamente como el ejemplo dado.
+
+
 ## Solución de Errores
+
+* Listar Cliente: Error 400 bad request
+  Error solucionado al cambiar la entrada de estado en formato JSON, pasando de tener letras (String) a tener números (int).
+* Agregar Usuario: Error 500 internal server error
+  Error solucionado al quitar el "codigoUsuario" porque era un valor autoincrementable.
