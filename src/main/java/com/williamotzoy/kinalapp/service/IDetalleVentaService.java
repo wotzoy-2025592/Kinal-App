@@ -8,7 +8,6 @@ import java.util.Optional;
 public interface IDetalleVentaService {
 
     List<DetalleVenta> listarTodos();
-    List<DetalleVenta> listarActivos();
 
     DetalleVenta guardar(DetalleVenta detalleVenta);
     Optional<DetalleVenta> buscarPorCodigo(Long codigo);
