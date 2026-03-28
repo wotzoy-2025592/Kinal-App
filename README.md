@@ -45,11 +45,18 @@ Es importante saber que debes hacer para instalar y ejecutar el programa:
 
 
 * Se ha creado la capa de entidad de Venta, ahora esta lista para crear la relación
-* Se ha creado la cacpa de repositorio de Venta.
+* Se ha creado la capa de repositorio de Venta.
 * Se ha creado la capa de interfaz de servicio de Venta.
 * Se ha creado la capa de servicio de Venta.
 * Se ha creado el controlador de Venta.
 * Los métodos de verificación estan en service, se tiene ya los métodos HTTPS y métodos CRUD para verificar datos en los endpoints.
-* 
+
+
+* Se ha creado la capa de entidad de Detalle Venta.
+* Se ha creado la capa de repositorio de Detalle Venta.
+* Se ha creado la capa de Interfaz de servicio de Detalle Venta.
+* Se ha creato la capa de servicio de Detalle Venta
+* Se ha creado el controlador de Detalle Venta.
+* Los métodos de verificación están en DetalleVentaService y se tienen los métodos HTTPS y métodos CRUD para verificar los endpoints.
 
 ## Solución de Errores
