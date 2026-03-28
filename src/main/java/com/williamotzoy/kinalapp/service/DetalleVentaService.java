@@ -2,11 +2,14 @@ package com.williamotzoy.kinalapp.service;
 
 import com.williamotzoy.kinalapp.entity.DetalleVenta;
 import com.williamotzoy.kinalapp.repository.DetalleVentaRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@Transactional
 public class DetalleVentaService implements IDetalleVentaService{
 
     private final DetalleVentaRepository detalleVentaRepository;
@@ -57,9 +60,7 @@ public class DetalleVentaService implements IDetalleVentaService{
     }
 
     private void validarDetalleVenta(DetalleVenta detalleVenta) {
-        if (detalleVenta.getCodigoDetalleVenta() == null) {
-            throw new IllegalArgumentException("El campo de codigo de detalle de venta es obligatorio.");
-        }
+
         if (detalleVenta.getCantidad() == null) {
             throw new IllegalArgumentException("El campo de cantidad es obligatorio");
         }
