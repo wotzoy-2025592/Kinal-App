@@ -1,21 +1,48 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="src/css/styles.css">
-    <title>Menú Principal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Kinal App</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
-
-    <header class="header-content">
-        <div class="header-section">
-            <div class="logo-kinal-app">
-                <img class="logo-kinal-img" src="public/img/Kinal-logo.png">
-            </div>
+<header class="header-content">
+    <div class="header-section">
+        <div class="logo-kinal-app">
+            <img class="logo-kinal-img" src="../static/img/Kinal-logo.png">
         </div>
-    </header>
+        <span class="title-app">Menú Kinal App</span>
+    </div>
+</header>
+
+<main class="main-content">
+    <div class="main-options">
+        <a href="usuarios.html" class="option-container">
+            <img class="option-img" src="../static/img/Usuarios-SinFondo.png">
+            <p class="option-text">Usuarios</p>
+        </a>
+
+        <a href="productos.html" class="option-container">
+            <img class="option-img" src="../static/img/Productos-SinFondo.png">
+            <p class="option-text">Productos</p>
+        </a>
+
+        <a href="usuario/user-form.html" class="option-container">
+            <img class="option-img" src="../static/img/Clientes-SinFondo.png">
+            <p class="option-text">Cliente</p>
+        </a>
+
+        <a href="ventas.html" class="option-container">
+            <img class="option-img" src="../static/img/Ventas-SinFondo.png">
+            <p class="option-text">Ventas</p>
+        </a>
+
+        <a href="detalle-venta.html" class="option-container">
+            <img class="option-img" src="../static/img/DetalleVenta-SinFondo.png">
+            <p class="option-text">Detalle de Venta</p>
+        </a>
+    </div>
+</main>
 </body>
 </html>
