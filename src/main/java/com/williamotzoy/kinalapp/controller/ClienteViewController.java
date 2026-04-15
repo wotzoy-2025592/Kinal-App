@@ -49,7 +49,10 @@ public class ClienteViewController {
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable String id, Model model){
-        model.addAttribute("cliente", clienteService.buscarPorDPI(id));
+        Cliente cliente = clienteService.buscarPorDPI(id)
+                        .orElseThrow(()-> new RuntimeException("Cliente no encontrado"));
+        model.addAttribute("cliente", cliente);
+
         return "clientes/cliente-form";
     }
 

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 //@RestController = @Controller + @RequestBody
-@RequestMapping("/clientes")
+@RequestMapping("/clientes-textito")
 //Todas las rutas en este controlador deben empezar con /clientes
 public class ClienteController {
     //Inyectamos el SERVICIO y NO el repositorio
