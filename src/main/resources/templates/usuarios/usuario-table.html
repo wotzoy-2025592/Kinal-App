@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header class="header-content">
+        <div class="header-section">
+            <div class="header-tools">
+                <a th:href="@{/}" class="logo-kinal-app">
+                    <img class="logo-kinal-img" th:src="@{/img/Kinal-logo.png}">
+                </a>
+
+                <a th:href="@{/}" class="home-link">
+                    <img class="home-img" th:src="@{/img/Home.png}">
+                </a>
+            </div>
+            <span class="title-app">Gestión de Usuarios</span>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="table-container">
+            <div class="table-header">
+                <span class="table-title">Usuarios</span>
+
+                <a th:href="@{/usuarios/nuevo}" class="btn-add">
+                    + Nuevo
+                </a>
+            </div>
+
+            <!-- BUSCADOR -->
+            <form th:action="@{/usuarios}" method="get" class="search-container">
+                <input class="search-input" type="number" name="q" placeholder="Buscar usuario por código..." th:value="${param.q}">
+                <button class="search-button" type="submit">Buscar</button>
+
+                <a th:href="@{/usuarios}" class="btn-clear">Limpiar</a>
+            </form>
+
+            <!-- TABLA -->
+            <table class="custom-table">
+                <thead class="table-head">
+                <tr>
+                    <th class="table-cell">Código</th>
+                    <th class="table-cell">Username</th>
+                    <th class="table-cell">Email</th>
+                    <th class="table-cell">Rol</th>
+                    <th class="table-cell">Estado</th>
+                    <th class="table-cell">Modificaciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr class="table-row" th:each="u : ${usuarios}">
+                    <td class="table-cell" th:text="${u.codigoUsuario}"></td>
+                    <td class="table-cell" th:text="${u.userName}"></td>
+                    <td class="table-cell" th:text="${u.email}"></td>
+                    <td class="table-cell">
+                    <span class="badge"
+                          th:classappend="${u.rol == 'ADMIN'} ? 'badge-admin' : 'badge-user'"
+                          th:text="${u.rol}">
+                    </span>
+                    </td>
+
+                    <td class="table-cell">
+                    <span class="badge"
+                          th:classappend="${u.estado == 1} ? 'badge-active' : 'badge-inactive'"
+                          th:text="${u.estado == 1} ? 'Activo' : 'Inactivo'">
+                    </span>
+                    </td>
+
+                    <td class="table-cell">
+                        <div th:if="${rolActual == 'ADMIN'}">
+                            <a th:href="@{/usuarios/editar/{codigo}(codigo=${u.codigoUsuario})}"
+                               class="btn-action btn-edit">Editar</a>
+
+                            <a th:href="@{/usuarios/eliminar/{codigo}(codigo=${u.codigoUsuario})}"
+                               class="btn-action btn-delete"
+                               onclick="return confirm('¿Eliminar usuario?')">Eliminar</a>
+                        </div>
+
+                        <div th:if="${rolActual != 'ADMIN'}">
+                            <span class="btn-action btn-disabled">Editar</span>
+                            <span class="btn-action btn-disabled">Eliminar</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(usuarios)}">
+                    <td class="table-cell" colspan="6">No hay usuarios registrados</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+</html>
