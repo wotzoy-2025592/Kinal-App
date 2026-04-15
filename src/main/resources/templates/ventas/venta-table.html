@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Ventas</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header class="header-content">
+        <div class="header-section">
+            <div class="header-tools">
+                <a th:href="@{/}" class="logo-kinal-app">
+                    <img class="logo-kinal-img" th:src="@{/img/Kinal-logo.png}" alt="Logo Kinal">
+                </a>
+
+                <a th:href="@{/}" class="home-link">
+                    <img class="home-img" th:src="@{/img/Home.png}" alt="Home">
+                </a>
+            </div>
+            <span class="title-app">Gestión de Ventas</span>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="table-container">
+            <div class="table-header">
+                <span class="table-title">Historial de Ventas</span>
+
+                <a th:href="@{/ventas/nuevo}" class="btn-add">
+                    + Nueva Venta
+                </a>
+            </div>
+
+            <form th:action="@{/ventas}" method="get" class="search-container">
+                <input class="search-input" type="number" name="q"
+                       placeholder="Buscar por código de venta..." th:value="${param.q}">
+                <button class="search-button" type="submit">Buscar</button>
+
+                <a th:href="@{/ventas}" class="btn-clear">Limpiar</a>
+            </form>
+
+            <table class="custom-table">
+                <thead class="table-head">
+                <tr>
+                    <th class="table-cell">Código</th>
+                    <th class="table-cell">Fecha</th>
+                    <th class="table-cell">Cliente</th>
+                    <th class="table-cell">Vendedor</th>
+                    <th class="table-cell">Total</th>
+                    <th class="table-cell">Estado</th>
+                    <th class="table-cell">Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr class="table-row" th:each="v : ${ventas}">
+                    <td class="table-cell" th:text="${v.codigoVenta}"></td>
+
+                    <td class="table-cell" th:text="${#dates.format(v.fechaVenta, 'dd/MM/yyyy')}"></td>
+
+                    <td class="table-cell"
+                        th:text="${v.clienteVenta != null} ? (${v.clienteVenta.nombreCliente} + ' ' + ${v.clienteVenta.apellidoCliente}) : 'Sin Cliente'">
+                    </td>
+
+                    <td class="table-cell"
+                        th:text="${v.usuarioVenta != null} ? ${v.usuarioVenta.userName} : 'Sin Usuario'">
+                    </td>
+
+                    <td class="table-cell" th:text="'Q' + ${v.total}"></td>
+
+                    <td class="table-cell">
+                            <span class="badge"
+                                  th:classappend="${v.estado == 1} ? 'badge-active' : 'badge-inactive'"
+                                  th:text="${v.estado == 1} ? 'Activa' : 'Inactiva'">
+                            </span>
+                    </td>
+
+                    <td class="table-cell">
+                        <div th:if="${rolActual == 'ADMIN'}">
+                            <a th:href="@{/ventas/editar/{codigo}(codigo=${v.codigoVenta})}"
+                               class="btn-action btn-edit">Editar</a>
+
+                            <a th:href="@{/ventas/eliminar/{codigo}(codigo=${v.codigoVenta})}"
+                               class="btn-action btn-delete"
+                               onclick="return confirm('¿Desea eliminar este registro de venta?')">Eliminar</a>
+                        </div>
+
+                        <div th:if="${rolActual != 'ADMIN'}">
+                            <span class="btn-action btn-disabled">Editar</span>
+                            <span class="btn-action btn-disabled">Eliminar</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(ventas)}">
+                    <td class="table-cell" colspan="7">No se encontraron registros de ventas</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
