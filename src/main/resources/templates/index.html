@@ -9,8 +9,14 @@
 <body>
     <header class="header-content">
         <div class="header-section">
-            <div class="logo-kinal-app">
-                <img class="logo-kinal-img" th:src="@{/img/Kinal-logo.png}">
+            <div class="header-tools">
+                <a th:href="@{/}" class="logo-kinal-app">
+                    <img class="logo-kinal-img" th:src="@{/img/Kinal-logo.png}">
+                </a>
+
+                <a th:href="@{/}" class="home-link">
+                    <img class="home-img" th:src="@{/img/Home.png}">
+                </a>
             </div>
             <span class="title-app">Menú Kinal App</span>
         </div>
@@ -18,27 +24,27 @@
 
     <main class="main-content">
         <div class="main-options">
-            <a th:href="@{/main/usuarios}" class="option-container">
+            <a th:href="@{/usuarios}" class="option-container">
                 <img class="option-img" th:src="@{/img/Usuarios-SinFondo.png}">
                 <p class="option-text">Usuarios</p>
             </a>
 
-            <a th:href="@{/main/productos}" class="option-container">
+            <a th:href="@{/productos}" class="option-container">
                 <img class="option-img" th:src="@{/img/Productos-SinFondo.png}">
                 <p class="option-text">Productos</p>
             </a>
 
-            <a th:href="@{/main/usuario/user-form}" class="option-container">
+            <a th:href="@{/clientes}" class="option-container">
                 <img class="option-img" th:src="@{/img/Clientes-SinFondo.png}">
                 <p class="option-text">Cliente</p>
             </a>
 
-            <a th:href="@{/main/ventas}" class="option-container">
+            <a th:href="@{/ventas}" class="option-container">
                 <img class="option-img" th:src="@{/img/Ventas-SinFondo.png}">
                 <p class="option-text">Ventas</p>
             </a>
 
-            <a th:href="@{/main/detalle-venta}" class="option-container">
+            <a th:href="@{/detalle-venta}" class="option-container">
                 <img class="option-img" th:src="@{/img/DetalleVenta-SinFondo.png}">
                 <p class="option-text">Detalle de Venta</p>
             </a>
