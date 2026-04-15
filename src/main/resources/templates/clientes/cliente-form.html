@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label class="form-label">DPI del Cliente</label>
                     <input type="text" class="form-input" th:field="*{DPICliente}"
-                           pattern="\[0-9]{13}" title="El DPI debe contener 13 dígitos numéricos"
+                           maxlength="13" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                            th:readonly="${cliente.DPICliente != null}" required>
                 </div>
 
@@ -56,7 +56,7 @@
                 <div class="form-group">
                     <label class="form-label">Estado</label>
                     <select class="form-select" th:field="*{estado}">
-                        <option th:value="null" disabled selected>Seleccione un rol...</option>
+                        <option value="" disabled selected>Seleccione un rol</option>
                         <option value="1">Activo</option>
                         <option value="0">Inactivo</option>
                     </select>
