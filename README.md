@@ -64,9 +64,18 @@ Es importante saber que debes hacer para instalar y ejecutar el programa:
   esta exactamente como el ejemplo dado.
 
 
+15/04/2026
+* Se ha creado un archivo html en templates que contiene el menú principal
+* Se ha creado un archivo en static-css para definir un estilo/colores a la página del menú principal (index.html).
+* Se han agregado imagenes en static-img para mostrar iconos en el menú principal y mostrar el logo.
+* Se ha creado un controlador de la vista del menú para poder ejecutar la vista.
+
+
 ## Solución de Errores
 
 * Listar Cliente: Error 400 bad request
   Error solucionado al cambiar la entrada de estado en formato JSON, pasando de tener letras (String) a tener números (int).
 * Agregar Usuario: Error 500 internal server error
   Error solucionado al quitar el "codigoUsuario" porque era un valor autoincrementable.
+* 15/04/2026: Error 404 Not Found:
+  Error solucionado al agregar las dependencias de thymeleaf al proyecto, haciendo que funcione el html.
