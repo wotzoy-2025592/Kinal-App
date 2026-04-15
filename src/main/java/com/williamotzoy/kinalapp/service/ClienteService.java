@@ -48,7 +48,7 @@ public class ClienteService implements IClienteService {
     @Override
     @Transactional(readOnly = true)
     public List<Cliente> listarActivos() {
-        return clienteRepository.findByEstado(1);
+        return clienteRepository.findByEstado(1L);
     }
 
     @Override
@@ -79,6 +79,11 @@ public class ClienteService implements IClienteService {
             throw new RuntimeException("El cliente no se encontró con el DPI " + dpi);
             //si no existe se lanza una excepción (error controlado)
         }
+
+        if (!cliente.getDPICliente().matches("\\d+")) {
+            throw new IllegalArgumentException("El DPI debe contener únicamente números.");
+        }
+
         cliente.setDPICliente(dpi);
         //Asegurarnos que el DPI del objeto coincida con el de la URL
         //Por seguridad usamos el DPI de la URL y no el que viene en el JSON

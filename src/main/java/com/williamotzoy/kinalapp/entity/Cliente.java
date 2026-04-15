@@ -18,7 +18,7 @@ public class Cliente {
     @Column(nullable = false)
     private String direccion;
     @Column(nullable = false)
-    private int estado;
+    private Long estado;
 
     @OneToMany(mappedBy = "clienteVenta", cascade = CascadeType.ALL)
     private List<Venta> clienteVentas;
@@ -26,7 +26,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nombreCliente, String apellidoCliente, String direccion, int estado, String DPICliente) {
+    public Cliente(String nombreCliente, String apellidoCliente, String direccion, Long estado, String DPICliente) {
         this.nombreCliente = nombreCliente;
         this.apellidoCliente = apellidoCliente;
         this.direccion = direccion;
@@ -66,11 +66,11 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public int getEstado() {
+    public Long getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Long estado) {
         this.estado = estado;
     }
 }

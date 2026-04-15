@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ClienteRepository extends JpaRepository<Cliente, String> {
 
-    List<Cliente> findByEstado(Integer estado);
+    List<Cliente> findByEstado(Long estado);
 
 
 }
