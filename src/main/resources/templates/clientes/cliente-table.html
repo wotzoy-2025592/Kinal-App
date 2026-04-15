@@ -7,89 +7,88 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<header class="header-content">
-    <div class="header-section">
-        <div class="header-tools">
-            <a th:href="@{/}" class="logo-kinal-app">
-                <img class="logo-kinal-img" th:src="@{/img/Kinal-logo.png}">
-            </a>
+    <header class="header-content">
+        <div class="header-section">
+            <div class="header-tools">
+                <a th:href="@{/}" class="logo-kinal-app">
+                    <img class="logo-kinal-img" th:src="@{/img/Kinal-logo.png}">
+                </a>
 
-            <a th:href="@{/}" class="home-link">
-                <img class="home-img" th:src="@{/img/Home.png}">
-            </a>
+                <a th:href="@{/}" class="home-link">
+                    <img class="home-img" th:src="@{/img/Home.png}">
+                </a>
+            </div>
+            <span class="title-app">Gestión de Clientes</span>
         </div>
-        <span class="title-app">Gestión de Clientes</span>
-    </div>
-</header>
+    </header>
 
-<main class="main-content">
-    <div class="table-container">
-        <div class="table-header">
-            <span class="table-title">Clientes</span>
+    <main class="main-content">
+        <div class="table-container">
+            <div class="table-header">
+                <span class="table-title">Clientes</span>
 
-            <a th:href="@{/clientes/nuevo}" class="btn-add">
-                + Nuevo
-            </a>
+                <a th:href="@{/clientes/nuevo}" class="btn-add">
+                    + Nuevo
+                </a>
+            </div>
+
+            <!-- BUSCADOR -->
+            <form th:action="@{/clientes}" method="get" class="search-container">
+                <input class="search-input" type="number" name="q" placeholder="Buscar usuario por código..." th:value="${param.q}">
+                <button class="search-button" type="submit">Buscar</button>
+
+                <a th:href="@{/clientes}" class="btn-clear">Limpiar</a>
+            </form>
+
+            <!-- TABLA -->
+            <table class="custom-table">
+                <thead class="table-head">
+                <tr>
+                    <th class="table-cell">DPI</th>
+                    <th class="table-cell">Nombre</th>
+                    <th class="table-cell">Apellido</th>
+                    <th class="table-cell">Dirección</th>
+                    <th class="table-cell">Estado</th>
+                    <th class="table-cell">Modificaciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr class="table-row" th:each="c : ${clientes}">
+                    <td class="table-cell" th:text="${c.DPICliente}"></td>
+                    <td class="table-cell" th:text="${c.nombreCliente}"></td>
+                    <td class="table-cell" th:text="${c.apellidoCliente}"></td>
+                    <td class="table-cell" th:text="${c.direccion}"></td>
+                    <td class="table-cell">
+                        <span class="badge"
+                            th:classappend="${c.estado == 1} ? 'badge-active' : 'badge-inactive'"
+                            th:text="${c.estado == 1} ? 'Activo' : 'Inactivo'">
+                        </span>
+                    </td>
+
+                    <td class="table-cell">
+                        <div th:if="${rolActual == 'ADMIN'}">
+                            <a th:href="@{/clientes/editar/{codigo}(codigo=${c.DPICliente})}"
+                               class="btn-action btn-edit">Editar</a>
+
+                            <a th:href="@{/clientes/eliminar/{codigo}(codigo=${c.DPICliente})}"
+                               class="btn-action btn-delete"
+                               onclick="return confirm('¿Eliminar cliente?')">Eliminar</a>
+                        </div>
+
+                        <div th:if="${rolActual != 'ADMIN'}">
+                            <span class="btn-action btn-disabled">Editar</span>
+                            <span class="btn-action btn-disabled">Eliminar</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(clientes)}">
+                    <td class="table-cell" colspan="6">No hay clientes registrados</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-
-        <!-- BUSCADOR -->
-        <form th:action="@{/clientes}" method="get" class="search-container">
-            <input class="search-input" type="number" name="q" placeholder="Buscar usuario por código..." th:value="${param.q}">
-            <button class="search-button" type="submit">Buscar</button>
-
-            <a th:href="@{/clientes}" class="btn-clear">Limpiar</a>
-        </form>
-
-        <!-- TABLA -->
-        <table class="custom-table">
-            <thead class="table-head">
-            <tr>
-                <th class="table-cell">DPI</th>
-                <th class="table-cell">Nombre</th>
-                <th class="table-cell">Apellido</th>
-                <th class="table-cell">Dirección</th>
-                <th class="table-cell">Estado</th>
-                <th class="table-cell">Modificaciones</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr class="table-row" th:each="c : ${clientes}">
-                <td class="table-cell" th:text="${c.DPICliente}"></td>
-                <td class="table-cell" th:text="${c.nombreCliente}"></td>
-                <td class="table-cell" th:text="${c.apellidoCliente}"></td>
-                <td class="table-cell" th:text="${c.direccion}"></td>
-                <td class="table-cell">
-                    <span class="badge"
-                        th:classappend="${c.estado == 1} ? 'badge-active' : 'badge-inactive'"
-                        th:text="${c.estado == 1} ? 'Activo' : 'Inactivo'">
-                    </span>
-                </td>
-
-                <td class="table-cell">
-                    <div th:if="${rolActual == 'ADMIN'}">
-                        <a th:href="@{/clientes/editar/{codigo}(codigo=${c.DPICliente})}"
-                           class="btn-action btn-edit">Editar</a>
-
-                        <a th:href="@{/clientes/eliminar/{codigo}(codigo=${c.DPICliente})}"
-                           class="btn-action btn-delete"
-                           onclick="return confirm('¿Eliminar cliente?')">Eliminar</a>
-                    </div>
-
-                    <div th:if="${rolActual != 'ADMIN'}">
-                        <span class="btn-action btn-disabled">Editar</span>
-                        <span class="btn-action btn-disabled">Eliminar</span>
-                    </div>
-                </td>
-            </tr>
-
-            <tr th:if="${#lists.isEmpty(clientes)}">
-                <td class="table-cell" colspan="6">No hay clientes registrados</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</main>
-
+    </main>
 </body>
 </html>
