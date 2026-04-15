@@ -33,8 +33,8 @@ public class ProductoService implements IProductoService{
     @Override
     public Producto guardar(Producto producto) {
         validarProducto(producto);
-        if (producto.getEstado() == 0)
-            producto.setEstado(1L);
+        //if (producto.getEstado() == 0)
+            //producto.setEstado(1L);
         return productoRepository.save(producto);
     }
 

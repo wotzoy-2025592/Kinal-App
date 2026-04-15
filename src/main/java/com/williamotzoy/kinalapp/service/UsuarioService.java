@@ -33,8 +33,11 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public Usuario guardar(Usuario usuario){
         validarUsuario(usuario);
-        if (usuario.getEstado() == 0)
-            usuario.setEstado(1L);
+        if (usuario.getEstado() == null) {
+            throw new IllegalArgumentException("Debe seleccionar un estado");
+        }
+        //if (usuario.getEstado() == 0)
+            //usuario.setEstado(1L);
         return usuarioRepository.save(usuario);
     }
 

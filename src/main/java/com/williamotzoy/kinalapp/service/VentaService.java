@@ -34,9 +34,9 @@ public class VentaService implements IVentaService{
     @Override
     public Venta guardar(Venta venta) {
         validarVenta(venta);
-        if (venta.getEstado() == 0) {
-            venta.setEstado(1L);
-        }
+        //if (venta.getEstado() == 0) {
+            //venta.setEstado(1L);
+        //}
         return ventaRepository.save(venta);
     }
 
