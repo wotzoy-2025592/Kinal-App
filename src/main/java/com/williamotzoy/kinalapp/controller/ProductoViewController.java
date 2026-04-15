@@ -53,7 +53,9 @@ public class ProductoViewController {
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model){
-        model.addAttribute("producto", productoService.buscarPorCodigo(id));
+        Producto producto = productoService.buscarPorCodigo(id)
+                        .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+        model.addAttribute("producto", producto);
         return "productos/producto-form";
     }
 
