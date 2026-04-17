@@ -44,12 +44,32 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="form-label">Cliente</label>
+                    <select class="form-select" th:field="*{clienteVenta.DPICliente}" required>
+                        <option value="" disabled selected>Seleccione un cliente</option>
+                        <option th:each="c : ${clientes}"
+                                th:value="${c.DPICliente}"
+                                th:text="${c.DPICliente + ' - ' + c.nombreCliente}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Usuario</label>
+                    <select class="form-select" th:field="*{usuarioVenta.codigoUsuario}" required>
+                        <option value="" disabled selected>Seleccione un usuario</option>
+                        <option th:each="u : ${usuarios}"
+                                th:value="${u.codigoUsuario}"
+                                th:text="${u.codigoUsuario + ' - ' + u.userName}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label class="form-label">Estado de la Venta</label>
                     <select class="form-select" th:field="*{estado}" required>
-                        <option value="" disabled selected>Seleccione estado</option>
-                        <option value="1">Completada</option>
-                        <option value="2">Pendiente</option>
-                        <option value="0">Cancelada</option>
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
                     </select>
                 </div>
 
