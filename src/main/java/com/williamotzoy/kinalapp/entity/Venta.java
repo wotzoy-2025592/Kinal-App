@@ -2,6 +2,7 @@ package com.williamotzoy.kinalapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,6 +16,7 @@ public class Venta {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long codigoVenta;
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaVenta;
     @Column(nullable = false)
     private BigDecimal total;
@@ -75,5 +77,14 @@ public class Venta {
     public void setEstado(Long estado) {
         this.estado = estado;
     }
-    
+
+    public Cliente getClienteVenta() { return clienteVenta; }
+    public void setClienteVenta(Cliente clienteVenta) {
+        this.clienteVenta = clienteVenta;
+    }
+
+    public Usuario getUsuarioVenta() { return usuarioVenta; }
+    public void setUsuarioVenta(Usuario usuarioVenta) {
+        this.usuarioVenta = usuarioVenta;
+    }
 }
