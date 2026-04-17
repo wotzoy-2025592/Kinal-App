@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Detalle Venta</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header class="header-content">
+        <div class="header-section">
+            <div class="header-tools">
+                <a th:href="@{/}" class="logo-kinal-app">
+                    <img class="logo-kinal-img" th:src="@{/img/Kinal-logo.png}">
+                </a>
+
+                <a th:href="@{/}" class="home-link">
+                    <img class="home-img" th:src="@{/img/Home.png}">
+                </a>
+            </div>
+            <span class="title-app">Formulario Detalle Venta</span>
+        </div>
+    </header>
+
+    <div class="form-container">
+        <div class="form-card">
+
+            <h2 class="form-title"
+                th:text="${detalleVenta.codigoDetalleVenta == null} ? 'Nuevo Detalle' : 'Editar Detalle'">
+            </h2>
+
+            <form th:action="@{/detalle-ventas/guardar}" th:object="${detalleVenta}" method="post">
+
+                <input type="hidden" th:field="*{codigoDetalleVenta}">
+
+                <div class="form-group">
+                    <label class="form-label">Cantidad</label>
+                    <input type="number" class="form-input" th:field="*{cantidad}" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Precio Unitario</label>
+                    <input type="number" step="0.01" class="form-input" th:field="*{precioUnitario}" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Subtotal</label>
+                    <input type="number" step="0.01" class="form-input" th:field="*{subTotal}" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Producto</label>
+                    <select class="form-select" th:field="*{productoDetalleVenta.codigoProducto}" required>
+                        <option value="" disabled selected>Seleccione un producto</option>
+                        <option th:each="p : ${productos}"
+                                th:value="${p.codigoProducto}"
+                                th:text="${p.codigoProducto + ' - ' + p.nombreProducto}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Venta</label>
+                    <select class="form-select" th:field="*{ventaDetalle.codigoVenta}" required>
+                        <option value="" disabled selected>Seleccione una venta</option>
+                        <option th:each="v : ${ventas}"
+                                th:value="${v.codigoVenta}"
+                                th:text="${v.codigoVenta}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Guardar Detalle</button>
+                    <a th:href="@{/detalle-ventas}" class="btn-cancel">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
