@@ -1,6 +1,8 @@
 package com.williamotzoy.kinalapp.controller;
 
 import com.williamotzoy.kinalapp.entity.Venta;
+import com.williamotzoy.kinalapp.service.IClienteService;
+import com.williamotzoy.kinalapp.service.IUsuarioService;
 import com.williamotzoy.kinalapp.service.IVentaService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,13 @@ import java.util.List;
 public class VentaViewController {
 
     private final IVentaService ventaService;
+    private final IClienteService clienteService;
+    private final IUsuarioService usuarioService;
 
-    public VentaViewController(IVentaService ventaService) {
+    public VentaViewController(IVentaService ventaService, IClienteService clienteService, IUsuarioService usuarioService) {
         this.ventaService = ventaService;
+        this.clienteService = clienteService;
+        this.usuarioService = usuarioService;
     }
 
     @GetMapping
@@ -38,8 +44,8 @@ public class VentaViewController {
     @GetMapping("/nuevo")
     public String nuevoForm(Model model) {
         model.addAttribute("venta", new Venta());
-        // Nota: Los objetos para los selectores (clientes/usuarios)
-        // no se cargan aquí por restricción del usuario.
+        model.addAttribute("clientes", clienteService.listarTodos());
+        model.addAttribute("usuarios", usuarioService.listarTodos());
         return "ventas/venta-form";
     }
 
@@ -55,6 +61,8 @@ public class VentaViewController {
                 .orElseThrow(() -> new RuntimeException("Venta no encontrada"));
 
         model.addAttribute("venta", venta);
+        model.addAttribute("clientes", clienteService.listarTodos());
+        model.addAttribute("usuarios", usuarioService.listarTodos());
         return "ventas/venta-form";
     }
 
