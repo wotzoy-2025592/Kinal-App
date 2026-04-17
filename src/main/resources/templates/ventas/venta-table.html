@@ -45,30 +45,20 @@
                 <tr>
                     <th class="table-cell">Código</th>
                     <th class="table-cell">Fecha</th>
-                    <th class="table-cell">Cliente</th>
-                    <th class="table-cell">Vendedor</th>
+                    <th class="table-cell">DPI</th>
+                    <th class="table-cell">ID-Usuario</th>
                     <th class="table-cell">Total</th>
                     <th class="table-cell">Estado</th>
                     <th class="table-cell">Acciones</th>
                 </tr>
                 </thead>
-
                 <tbody>
                 <tr class="table-row" th:each="v : ${ventas}">
                     <td class="table-cell" th:text="${v.codigoVenta}"></td>
-
                     <td class="table-cell" th:text="${#dates.format(v.fechaVenta, 'dd/MM/yyyy')}"></td>
-
-                    <td class="table-cell"
-                        th:text="${v.clienteVenta != null} ? (${v.clienteVenta.nombreCliente} + ' ' + ${v.clienteVenta.apellidoCliente}) : 'Sin Cliente'">
-                    </td>
-
-                    <td class="table-cell"
-                        th:text="${v.usuarioVenta != null} ? ${v.usuarioVenta.userName} : 'Sin Usuario'">
-                    </td>
-
+                    <td class="table-cell" th:text="${v.clienteVenta?.DPICliente}"></td>
+                    <td class="table-cell" th:text="${v.usuarioVenta?.codigoUsuario}"></td>
                     <td class="table-cell" th:text="'Q' + ${v.total}"></td>
-
                     <td class="table-cell">
                             <span class="badge"
                                   th:classappend="${v.estado == 1} ? 'badge-active' : 'badge-inactive'"
