@@ -73,4 +73,18 @@ public class DetalleVenta {
     public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
     }
+
+    public Producto getProductoDetalleVenta(){
+        return productoDetalleVenta;
+    }
+    public void setProductoDetalleVenta(Producto productoDetalleVenta){
+        this.productoDetalleVenta = productoDetalleVenta;
+    }
+
+    public Venta getVentaDetalle() {
+        return ventaDetalle;
+    }
+    public void setVentaDetalle(Venta ventaDetalle) {
+        this.ventaDetalle = ventaDetalle;
+    }
 }
