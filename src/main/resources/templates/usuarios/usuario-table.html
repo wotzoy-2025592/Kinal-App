@@ -32,7 +32,6 @@
                 </a>
             </div>
 
-            <!-- BUSCADOR -->
             <form th:action="@{/usuarios}" method="get" class="search-container">
                 <input class="search-input" type="number" name="q"
                        placeholder="Buscar usuario por código..." th:value="${param.q}">
@@ -41,7 +40,6 @@
                 <a th:href="@{/usuarios}" class="btn-clear">Limpiar</a>
             </form>
 
-            <!-- TABLA -->
             <table class="custom-table">
                 <thead class="table-head">
                 <tr>
