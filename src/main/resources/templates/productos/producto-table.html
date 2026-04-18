@@ -67,19 +67,14 @@
                     </td>
 
                     <td class="table-cell">
-                        <div th:if="${rolActual == 'ADMIN'}">
-                            <a th:href="@{/productos/editar/{id}(id=${p.codigoProducto})}"
-                               class="btn-action btn-edit">Editar</a>
+                        <a th:href="@{/ruta/editar/{id}(id=${p.codigoProducto})}"
+                           class="btn-action btn-edit">Editar</a>
 
-                            <a th:href="@{/productos/eliminar/{id}(id=${p.codigoProducto})}"
-                               class="btn-action btn-delete"
-                               onclick="return confirm('¿Está seguro de eliminar este producto?')">Eliminar</a>
-                        </div>
-
-                        <div th:if="${rolActual != 'ADMIN'}">
-                            <span class="btn-action btn-disabled">Editar</span>
-                            <span class="btn-action btn-disabled">Eliminar</span>
-                        </div>
+                        <a href="#"
+                           class="btn-action btn-delete"
+                           onclick="alert('La opción eliminar no está disponible'); return false;">
+                            Eliminar
+                        </a>
                     </td>
                 </tr>
 

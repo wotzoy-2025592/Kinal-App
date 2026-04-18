@@ -66,19 +66,14 @@
                     </td>
 
                     <td class="table-cell">
-                        <div th:if="${rolActual == 'ADMIN'}">
-                            <a th:href="@{/clientes/editar/{codigo}(codigo=${c.DPICliente})}"
-                               class="btn-action btn-edit">Editar</a>
+                        <a th:href="@{/clientes/editar/{codigo}(codigo=${c.DPICliente})}"
+                           class="btn-action btn-edit">Editar</a>
 
-                            <a th:href="@{/clientes/eliminar/{codigo}(codigo=${c.DPICliente})}"
-                               class="btn-action btn-delete"
-                               onclick="return confirm('¿Eliminar cliente?')">Eliminar</a>
-                        </div>
-
-                        <div th:if="${rolActual != 'ADMIN'}">
-                            <span class="btn-action btn-disabled">Editar</span>
-                            <span class="btn-action btn-disabled">Eliminar</span>
-                        </div>
+                        <a href="#"
+                           class="btn-action btn-delete"
+                           onclick="alert('La opción eliminar no está disponible'); return false;">
+                            Eliminar
+                        </a>
                     </td>
                 </tr>
 

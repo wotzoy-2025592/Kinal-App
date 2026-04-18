@@ -34,7 +34,8 @@
 
             <!-- BUSCADOR -->
             <form th:action="@{/usuarios}" method="get" class="search-container">
-                <input class="search-input" type="number" name="q" placeholder="Buscar usuario por código..." th:value="${param.q}">
+                <input class="search-input" type="number" name="q"
+                       placeholder="Buscar usuario por código..." th:value="${param.q}">
                 <button class="search-button" type="submit">Buscar</button>
 
                 <a th:href="@{/usuarios}" class="btn-clear">Limpiar</a>
@@ -58,34 +59,30 @@
                     <td class="table-cell" th:text="${u.codigoUsuario}"></td>
                     <td class="table-cell" th:text="${u.userName}"></td>
                     <td class="table-cell" th:text="${u.email}"></td>
+
                     <td class="table-cell">
-                    <span class="badge"
-                          th:classappend="${u.rol == 'ADMIN'} ? 'badge-admin' : 'badge-user'"
-                          th:text="${u.rol}">
-                    </span>
+                            <span class="badge"
+                                  th:classappend="${u.rol == 'ADMIN'} ? 'badge-admin' : 'badge-user'"
+                                  th:text="${u.rol}">
+                            </span>
                     </td>
 
                     <td class="table-cell">
-                    <span class="badge"
-                          th:classappend="${u.estado == 1} ? 'badge-active' : 'badge-inactive'"
-                          th:text="${u.estado == 1} ? 'Activo' : 'Inactivo'">
-                    </span>
+                            <span class="badge"
+                                  th:classappend="${u.estado == 1} ? 'badge-active' : 'badge-inactive'"
+                                  th:text="${u.estado == 1} ? 'Activo' : 'Inactivo'">
+                            </span>
                     </td>
 
                     <td class="table-cell">
-                        <div th:if="${rolActual == 'ADMIN'}">
-                            <a th:href="@{/usuarios/editar/{codigo}(codigo=${u.codigoUsuario})}"
-                               class="btn-action btn-edit">Editar</a>
+                        <a th:href="@{/usuarios/editar/{codigo}(codigo=${u.codigoUsuario})}"
+                           class="btn-action btn-edit">Editar</a>
 
-                            <a th:href="@{/usuarios/eliminar/{codigo}(codigo=${u.codigoUsuario})}"
-                               class="btn-action btn-delete"
-                               onclick="return confirm('¿Eliminar usuario?')">Eliminar</a>
-                        </div>
-
-                        <div th:if="${rolActual != 'ADMIN'}">
-                            <span class="btn-action btn-disabled">Editar</span>
-                            <span class="btn-action btn-disabled">Eliminar</span>
-                        </div>
+                        <a th:href="@{/usuarios/eliminar/{codigo}(codigo=${u.codigoUsuario})}"
+                           class="btn-action btn-delete"
+                           onclick="alert('La opción de eliminar no está disponible'); return false;">
+                            Eliminar
+                        </a>
                     </td>
                 </tr>
 
