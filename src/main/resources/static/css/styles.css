@@ -294,3 +294,21 @@ body {
     border-radius: 8px;
     text-decoration: none;
 }
+
+.btn-logout {
+    background-color: #ef4444;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.header-section2{
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1.5rem .8em;
+    gap: 30px;
+}
