@@ -13,8 +13,10 @@ public interface IUsuarioService {
     Usuario guardar(Usuario usuario);
     Optional<Usuario> buscarPorCodigo(Long codigo);
     Usuario actualizar(Long codigo, Usuario usuario);
+    Optional<Usuario> buscarPorNombre(String nombre);
 
     void eliminar(Long codigo);
 
     boolean existePorCodigo(Long codigo);
+    boolean existePorNombre(String nombre);
 }
