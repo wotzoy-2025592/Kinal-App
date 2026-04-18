@@ -47,6 +47,12 @@ public class UsuarioService implements IUsuarioService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Optional<Usuario> buscarPorNombre(String userName) {
+        return usuarioRepository.findByUserName(userName);
+    }
+
+    @Override
     public Usuario actualizar(Long codigo, Usuario usuario){
         if(!usuarioRepository.existsById(codigo)){
             throw new RuntimeException("El usuario no se pudo encontrar con el codigo: " + codigo);
@@ -68,6 +74,11 @@ public class UsuarioService implements IUsuarioService {
     @Transactional(readOnly = true)
     public boolean existePorCodigo(Long codigo){
         return usuarioRepository.existsById(codigo);
+    }
+
+    @Override
+    public boolean existePorNombre(String nombre) {
+        return usuarioRepository.findByUserName(nombre).isPresent();
     }
 
     private void validarUsuario(Usuario usuario){
