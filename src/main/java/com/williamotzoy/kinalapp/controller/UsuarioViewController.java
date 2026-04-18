@@ -38,7 +38,6 @@ public class UsuarioViewController {
         } else {
             model.addAttribute("usuarios", usuarioService.listarTodos());
         }
-        model.addAttribute("rolActual", "ADMIN");
         return "usuarios/usuario-table";
     }
 

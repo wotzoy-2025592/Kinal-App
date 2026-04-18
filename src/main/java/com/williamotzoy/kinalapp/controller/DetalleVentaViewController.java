@@ -38,7 +38,6 @@ public class DetalleVentaViewController {
         } else {
             model.addAttribute("detalleVenta", detalleVentaService.listarTodos());
         }
-        model.addAttribute("rolActual", "ADMIN");
         return "detalleVenta/detalleVenta-table";
     }
 

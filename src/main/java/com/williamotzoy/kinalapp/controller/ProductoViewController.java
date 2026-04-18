@@ -35,7 +35,6 @@ public class ProductoViewController {
         } else {
             model.addAttribute("productos", productoService.listarTodos());
         }
-        model.addAttribute("rolActual", "ADMIN");
         return "productos/producto-table";
     }
 

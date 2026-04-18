@@ -37,7 +37,6 @@ public class VentaViewController {
         } else {
             model.addAttribute("ventas", ventaService.listarTodos());
         }
-        model.addAttribute("rolActual", "ADMIN");
         return "ventas/venta-table";
     }
 
