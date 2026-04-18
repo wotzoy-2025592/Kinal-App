@@ -31,7 +31,6 @@ public class ClienteViewController {
         } else {
             model.addAttribute("clientes", clienteService.listarTodos());
         }
-        model.addAttribute("rolActual", "ADMIN");
         return "clientes/cliente-table";
     }
 
