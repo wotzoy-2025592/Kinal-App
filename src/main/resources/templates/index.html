@@ -19,7 +19,9 @@
             </div>
             <div class="header-section2">
                 <span class="title-app">Menú Kinal App</span>
-                <a th:href="@{/login}" class="btn-logout">Cerrar sesión</a>
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit" class="btn-logout">Cerrar sesión</button>
+                </form>
             </div>
         </div>
     </header>
