@@ -120,6 +120,17 @@ Es importante saber que debes hacer para instalar y ejecutar el programa:
   mal uso de thymeleaf al momento de buscar por rutas/archivos/imgenes/links.
 - Proyecto con una cantidad de commits moderada, en la parte de rama propia y la de pull request. 
 
+
+### - 01/04/2026
+- Se integraron las dependencias de Spring Security
+- Se modifico el index.html para hacer funcionar el boton logout con Spring Security
+- Se modifico el login.html para deshabilitar el boton de crear cuenta.
+- Se modifico el LoginViewController para remover las validaciones con la base de datos de usuario, evitando errores con Security
+  y evitando tener una función sin utilidad.
+- Se agrego una nueva carpeta llamada config
+- Se agrego una nueva clase llamada SecurityConfig
+- Se agrego seguridad básica y validaciones de roles utilizando Spring Security e integrandolo al proyecto.
+
 ## Solución de Errores
 
 * Listar Cliente: Error 400 bad request
