@@ -4,6 +4,7 @@ import com.williamotzoy.kinalapp.entity.Usuario;
 import com.williamotzoy.kinalapp.service.IUsuarioService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,22 +23,10 @@ public class LoginViewController {
         return "login";
     }
 
-    @PostMapping
-    public String login(@RequestParam String userName, @RequestParam String password, HttpSession session) {
-        Usuario usuario = usuarioService.buscarPorNombre(userName)
-                .orElse(null);
-        if (usuario != null && usuario.getPassword().equals(password)) {
-            session.setAttribute("usuarioLogueado", usuario);
-            session.setAttribute("rolActual", usuario.getRol());
-            session.setAttribute("usuarioId", usuario.getCodigoUsuario());
-            return "redirect:/";
-        }
-        return "redirect:/login?error";
+    @GetMapping("/")
+    public String menu(Model model){
+        model.addAttribute("successmessage", "Conexión establecida con Éxito");
+        return "index";
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/login";
-    }
 }
