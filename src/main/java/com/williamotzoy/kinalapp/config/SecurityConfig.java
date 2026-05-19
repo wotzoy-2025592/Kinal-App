@@ -1,6 +1,7 @@
 package com.williamotzoy.kinalapp.config;
 
 
+import com.williamotzoy.kinalapp.repository.UsuarioRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -38,20 +39,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user = User.builder()
-                .username("user")
-                .password("user")
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password("admin")
-                .roles("ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(user, admin);
+    public UserDetailsService userDetailsService(UsuarioRepository usuarioRepository) {
+        return new UsersConfig(usuarioRepository);
     }
 
     @Bean
