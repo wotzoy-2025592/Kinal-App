@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +48,7 @@
                     <th class="table-cell">Email</th>
                     <th class="table-cell">Rol</th>
                     <th class="table-cell">Estado</th>
-                    <th class="table-cell">Modificaciones</th>
+                    <th sec:authorize="hasRole('ADMIN')" class="table-cell">Modificaciones</th>
                 </tr>
                 </thead>
 
@@ -73,10 +73,10 @@
                     </td>
 
                     <td class="table-cell">
-                        <a th:href="@{/usuarios/editar/{codigo}(codigo=${u.codigoUsuario})}"
+                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/usuarios/editar/{codigo}(codigo=${u.codigoUsuario})}"
                            class="btn-action btn-edit">Editar</a>
 
-                        <a th:href="@{/usuarios/eliminar/{codigo}(codigo=${u.codigoUsuario})}"
+                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/usuarios/eliminar/{codigo}(codigo=${u.codigoUsuario})}"
                            class="btn-action btn-delete"
                            onclick="alert('La opción de eliminar no está disponible'); return false;">
                             Eliminar
