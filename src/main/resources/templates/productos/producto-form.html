@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Productos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header class="header-content">
+        <div class="header-section">
+            <div class="header-tools">
+                <a th:href="@{/}" class="logo-kinal-app">
+                    <img class="logo-kinal-img" th:src="@{/img/Kinal-logo.png}" alt="Logo Kinal">
+                </a>
+
+                <a th:href="@{/}" class="home-link">
+                    <img class="home-img" th:src="@{/img/Home.png}" alt="Home">
+                </a>
+            </div>
+            <span class="title-app">Formulario de Producto</span>
+        </div>
+    </header>
+
+    <div class="form-container">
+        <div class="form-card">
+
+            <h2 class="form-title"
+                th:text="${producto.codigoProducto == null} ? 'Nuevo Producto' : 'Editar Producto'">
+            </h2>
+
+            <form th:action="@{/productos/guardar}" th:object="${producto}" method="post">
+
+                <input type="hidden" th:field="*{codigoProducto}">
+
+                <div class="form-group">
+                    <label class="form-label">Nombre del Producto</label>
+                    <input type="text" class="form-input" th:field="*{nombreProducto}"
+                           placeholder="Ej: Libro de Química" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Precio (Q)</label>
+                    <input type="number" step="0.01" class="form-input" th:field="*{precio}"
+                           placeholder="0.00" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Stock / Existencias</label>
+                    <input type="number" class="form-input" th:field="*{stock}"
+                           placeholder="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Estado</label>
+                    <select class="form-select" th:field="*{estado}" required>
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Guardar Producto</button>
+                    <a th:href="@{/productos}" class="btn-cancel">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

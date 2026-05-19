@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Venta</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header class="header-content">
+        <div class="header-section">
+            <div class="header-tools">
+                <a th:href="@{/}" class="logo-kinal-app">
+                    <img class="logo-kinal-img" th:src="@{/img/Kinal-logo.png}">
+                </a>
+
+                <a th:href="@{/}" class="home-link">
+                    <img class="home-img" th:src="@{/img/Home.png}">
+                </a>
+            </div>
+            <span class="title-app">Formulario de Venta</span>
+        </div>
+    </header>
+
+    <div class="form-container">
+        <div class="form-card">
+
+            <h2 class="form-title"
+                th:text="${venta.codigoVenta == null} ? 'Nueva Venta' : 'Editar Venta'">
+            </h2>
+
+            <form th:action="@{/ventas/guardar}" th:object="${venta}" method="post">
+
+                <input type="hidden" th:field="*{codigoVenta}">
+
+                <div class="form-group">
+                    <label class="form-label">Fecha de Venta</label>
+                    <input type="date" class="form-input" th:field="*{fechaVenta}" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Total</label>
+                    <input type="number" step="0.01" class="form-input" th:field="*{total}" placeholder="0.00" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Cliente</label>
+                    <select class="form-select" th:field="*{clienteVenta.DPICliente}" required>
+                        <option value="" disabled selected>Seleccione un cliente</option>
+                        <option th:each="c : ${clientes}"
+                                th:value="${c.DPICliente}"
+                                th:text="${c.DPICliente + ' - ' + c.nombreCliente}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Usuario</label>
+                    <select class="form-select" th:field="*{usuarioVenta.codigoUsuario}" required>
+                        <option value="" disabled selected>Seleccione un usuario</option>
+                        <option th:each="u : ${usuarios}"
+                                th:value="${u.codigoUsuario}"
+                                th:text="${u.codigoUsuario + ' - ' + u.userName}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Estado de la Venta</label>
+                    <select class="form-select" th:field="*{estado}" required>
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Guardar Venta</button>
+                    <a th:href="@{/ventas}" class="btn-cancel">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

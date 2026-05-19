@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Kinal App</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header class="header-content">
+        <div class="header-section">
+            <div class="header-tools">
+                <a th:href="@{/}" class="logo-kinal-app">
+                    <img class="logo-kinal-img" th:src="@{/img/Kinal-logo.png}">
+                </a>
+                <a th:href="@{/}" class="home-link">
+                    <img class="home-img" th:src="@{/img/Home.png}">
+                </a>
+            </div>
+            
+            <div class="header-section2">
+                <span class="title-app">Menú Kinal App</span>
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button type="submit" class="btn-logout">Cerrar sesión</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="main-options">
+            <a th:href="@{/usuarios}" class="option-container">
+                <img class="option-img" th:src="@{/img/Usuarios-SinFondo.png}">
+                <p class="option-text">Usuarios</p>
+            </a>
+
+            <a th:href="@{/productos}" class="option-container">
+                <img class="option-img" th:src="@{/img/Productos-SinFondo.png}">
+                <p class="option-text">Productos</p>
+            </a>
+
+            <a th:href="@{/clientes}" class="option-container">
+                <img class="option-img" th:src="@{/img/Clientes-SinFondo.png}">
+                <p class="option-text">Cliente</p>
+            </a>
+
+            <a th:href="@{/ventas}" class="option-container">
+                <img class="option-img" th:src="@{/img/Ventas-SinFondo.png}">
+                <p class="option-text">Ventas</p>
+            </a>
+
+            <a th:href="@{/detalle-ventas}" class="option-container">
+                <img class="option-img" th:src="@{/img/DetalleVenta-SinFondo.png}">
+                <p class="option-text">Detalle de Venta</p>
+            </a>
+        </div>
+    </main>
+</body>
+</html>
