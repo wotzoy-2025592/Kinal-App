@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,8 +33,7 @@
             </div>
 
             <form th:action="@{/productos}" method="get" class="search-container">
-                <input class="search-input" type="number" name="q"
-                       placeholder="Buscar por código..." th:value="${param.q}">
+                <input class="search-input" type="number" name="q" placeholder="Buscar por código..." th:value="${param.q}">
                 <button class="search-button" type="submit">Buscar</button>
 
                 <a th:href="@{/productos}" class="btn-clear">Limpiar</a>
@@ -48,7 +47,7 @@
                     <th class="table-cell">Precio</th>
                     <th class="table-cell">Stock</th>
                     <th class="table-cell">Estado</th>
-                    <th class="table-cell">Acciones</th>
+                    <th sec:authorize="hasRole('ADMIN')" class="table-cell">Acciones</th>
                 </tr>
                 </thead>
 
@@ -67,12 +66,10 @@
                     </td>
 
                     <td class="table-cell">
-                        <a th:href="@{/productos/editar/{id}(id=${p.codigoProducto})}"
+                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/productos/editar/{id}(id=${p.codigoProducto})}"
                            class="btn-action btn-edit">Editar</a>
 
-                        <a href="#"
-                           class="btn-action btn-delete"
-                           onclick="alert('La opción eliminar no está disponible'); return false;">
+                        <a sec:authorize="hasRole('ADMIN')" href="#" class="btn-action btn-delete" onclick="alert('La opción eliminar no está disponible'); return false;">
                             Eliminar
                         </a>
                     </td>
